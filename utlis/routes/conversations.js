@@ -1,14 +1,9 @@
 import express from "express";
 import * as auth from "../middlewares/auth.js";
 import { uploadAudioMiddleware } from "../middlewares/upload.js";
+import admin from "../middlewares/admin.js";
 import contentType from "../middlewares/contentType.js";
-import {
-  create,
-  get,
-  getId,
-  edit,
-  aiEdit,
-} from "../controllers/conversations.js";
+import { create, get, getId, edit } from "../controllers/conversations.js";
 
 const router = express.Router();
 
@@ -23,7 +18,5 @@ router.patch(
   uploadAudioMiddleware,
   edit
 );
-
-router.patch("/:id/response", auth.jwt, aiEdit);
 
 export default router;

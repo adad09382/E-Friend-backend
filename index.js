@@ -5,17 +5,10 @@ import { StatusCodes } from "http-status-codes";
 import mongoSanitize from "express-mongo-sanitize";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import { Configuration, OpenAIApi } from "openai";
 import routeUsers from "./routes/users.js";
 import routePrompts from "./routes/prompts.js";
 import routeConversation from "./routes/conversations.js";
 import "./passport/passport.js";
-
-// 設定 OpenAI 設定
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 const app = express();
 // 限制請求的middleware
