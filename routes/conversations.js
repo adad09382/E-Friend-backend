@@ -5,6 +5,7 @@ import contentType from "../middlewares/contentType.js";
 import {
   create,
   get,
+  getLast,
   getId,
   edit,
   aiEdit,
@@ -14,6 +15,7 @@ const router = express.Router();
 
 router.post("/", auth.jwt, contentType("application/json"), create);
 router.get("/", auth.jwt, get);
+router.get("/latest", auth.jwt, getLast);
 router.get("/:id", auth.jwt, getId);
 
 router.patch(

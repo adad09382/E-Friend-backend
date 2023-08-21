@@ -67,6 +67,25 @@ export const get = async (req, res) => {
     });
   }
 };
+// 獲得某User的所有最新的conversation
+export const getLast = async (req, res) => {
+  try {
+    console.log("開始獲得該用戶的最新對話id");
+    const result = await conversation
+      .findOne({ user: req.user._id })
+      .sort({ updatedAt: -1 }); // -1 代表降序排序，1 代表升序排序
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: "",
+      result,
+    });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "發生錯誤",
+    });
+  }
+};
 // 獲得某id的conversation
 export const getId = async (req, res) => {
   try {
@@ -104,11 +123,14 @@ export const edit = async (req, res) => {
   try {
     console.log("收到用戶發來訊息，開始修改conversation history");
     // 前端發來的新對話紀錄
+    console.log("錄音檔案路徑是：");
+    console.log(req.file.path);
     const newHistoryItem = {
       role: req.body.role,
       content: req.body.content,
       audioLink: req.file?.path,
     };
+
     const result = await conversation.findByIdAndUpdate(
       req.params.id, // 傳入指定 conversation Id
       {
