@@ -11,6 +11,9 @@ import routeConversation from "./routes/conversations.js";
 import "./passport/passport.js";
 
 const app = express();
+
+// 設定 trust proxy
+app.set("trust proxy", 1);
 // 限制請求的middleware
 app.use(
   rateLimit({
