@@ -27,7 +27,7 @@ export const get = async (req, res) => {
     console.log(error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: "發生錯誤",
+      message: "get新聞發生錯誤",
     });
   }
 };
@@ -55,7 +55,7 @@ export const getMore = async (req, res) => {
     console.log(error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
-      message: "發生錯誤",
+      message: "發生錯誤123",
     });
   }
 };
