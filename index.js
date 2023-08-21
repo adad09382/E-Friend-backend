@@ -8,6 +8,7 @@ import rateLimit from "express-rate-limit";
 import routeUsers from "./routes/users.js";
 import routePrompts from "./routes/prompts.js";
 import routeConversation from "./routes/conversations.js";
+import routeNews from "./routes/news.js";
 import "./passport/passport.js";
 
 const app = express();
@@ -75,6 +76,7 @@ app.use(mongoSanitize());
 app.use("/users", routeUsers);
 app.use("/prompts", routePrompts);
 app.use("/conversation", routeConversation);
+app.use("/news", routeNews);
 
 // 404網頁設定
 app.all("*", (req, res) => {
